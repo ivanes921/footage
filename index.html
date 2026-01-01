@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Highlight Flash Video</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>Flash-highlighter (9:16, 2s)</h1>
+      <p class="sub">Генерация быстрых “книжных” кадров + подсветка слов → WebM.</p>
+    </header>
+
+    <section class="controls">
+      <label>
+        Фраза (целиком):
+        <input id="phrase" type="text" value="почему ты здесь?" />
+      </label>
+
+      <label>
+        Что подсвечивать (через запятую):
+        <input id="highlight" type="text" value="почему ты здесь" />
+        <small>Можно несколько фрагментов. Регистр не важен.</small>
+      </label>
+
+      <div class="row">
+        <label>
+          Цвет подсветки:
+          <input id="color" type="color" value="#f1e34a" />
+        </label>
+
+        <label>
+          Длительность, сек:
+          <input id="duration" type="number" min="0.5" step="0.1" value="2" />
+        </label>
+
+        <label>
+          FPS:
+          <input id="fps" type="number" min="10" max="60" step="1" value="30" />
+        </label>
+      </div>
+
+      <div class="row">
+        <label>
+          Разрешение:
+          <select id="res">
+            <option value="720x1280" selected>720×1280</option>
+            <option value="1080x1920">1080×1920</option>
+          </select>
+        </label>
+
+        <label>
+          Зерно:
+          <input id="grain" type="range" min="0" max="0.25" step="0.01" value="0.10" />
+        </label>
+
+        <label>
+          “Смазанность” фона:
+          <input id="blur" type="range" min="0" max="10" step="0.5" value="5" />
+        </label>
+      </div>
+
+      <div class="buttons">
+        <button id="btnPreview">Preview (10 кадров)</button>
+        <button id="btnGenerate" class="primary">Generate 2s Video</button>
+        <a id="download" class="download" style="display:none">Download video</a>
+      </div>
+
+      <div class="hint">
+        <b>Важно:</b> WebM пишется в браузере. Если нужен MP4 — обычно конвертируют ffmpeg’ом.
+      </div>
+    </section>
+
+    <section class="stage">
+      <canvas id="c"></canvas>
+      <div class="meta" id="meta"></div>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
